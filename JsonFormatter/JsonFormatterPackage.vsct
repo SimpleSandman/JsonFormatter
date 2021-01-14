@@ -65,16 +65,16 @@
         <Parent guid="guidJsonFormatterPackageCmdSet" id="ToolbarGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
-          <ButtonText>Invoke MinifyJsonCommand</ButtonText>
-          <CommandName>Invoke MinifyJsonCommand</CommandName>
+          <ButtonText>Minify JSON</ButtonText>
+          <CommandName>Minify JSON</CommandName>
         </Strings>
       </Button>
       <Button guid="guidJsonFormatterPackageCmdSet" id="PrettyJsonCommand" priority="0x0100" type="Button">
         <Parent guid="guidJsonFormatterPackageCmdSet" id="ToolbarGroup" />
         <Icon guid="guidImages" id="bmpPic2" />
         <Strings>
-          <ButtonText>Invoke PrettyJsonCommand</ButtonText>
-          <CommandName>Invoke PrettyJsonCommand</CommandName>
+          <ButtonText>Pretty JSON</ButtonText>
+          <CommandName>Pretty JSON</CommandName>
         </Strings>
       </Button>
     </Buttons>

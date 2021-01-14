@@ -1,11 +1,12 @@
-﻿using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using System;
+﻿using System;
 using System.ComponentModel.Design;
-using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
 using Task = System.Threading.Tasks.Task;
+
+using EnvDTE;
+
+using Microsoft.VisualStudio.Shell;
+
+using Newtonsoft.Json;
 
 namespace JsonFormatter
 {
@@ -96,17 +97,16 @@ namespace JsonFormatter
         private void MinifyExecute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "MinifyJsonCommand";
 
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.package,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            DTE dte = Package.GetGlobalService(typeof(DTE)) as DTE;
+            Document doc = dte.ActiveDocument;
+            if (doc == null)
+            {
+                return;
+            }
+
+            string jsonString = FormatJsonString(doc);
+            OverwriteAllJsonTextToDocument(doc, jsonString);
         }
 
         /// <summary>
@@ -119,17 +119,50 @@ namespace JsonFormatter
         private void PrettyExecute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "PrettyJsonCommand";
+            
+            DTE dte = Package.GetGlobalService(typeof(DTE)) as DTE;
+            Document doc = dte.ActiveDocument;
+            if (doc == null)
+            {
+                return;
+            }
 
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.package,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            string jsonString = FormatJsonString(doc, Formatting.Indented);
+            OverwriteAllJsonTextToDocument(doc, jsonString);
         }
+
+        #region Helper Methods
+        private string FormatJsonString(Document doc, Formatting formatting = Formatting.None)
+        {
+            string jsonText = ReadAllJsonTextFromDocument(doc);
+            object obj = JsonConvert.DeserializeObject(jsonText);
+            return JsonConvert.SerializeObject(obj, formatting);
+        }
+
+        private string ReadAllJsonTextFromDocument(Document doc)
+        {
+            if (doc.Language != "JSON")
+            {
+                return "";
+            }
+
+            TextDocument txt = doc.Object() as TextDocument;
+            EditPoint editPoint = txt.StartPoint.CreateEditPoint();
+            return editPoint.GetText(txt.EndPoint);
+        }
+
+        private void OverwriteAllJsonTextToDocument(Document doc, string jsonString)
+        {
+            if (doc.Language != "JSON")
+            {
+                return;
+            }
+
+            TextDocument txt = doc.Object() as TextDocument;
+            EditPoint editPoint = txt.StartPoint.CreateEditPoint();
+            EditPoint movePoint = txt.EndPoint.CreateEditPoint();
+            editPoint.ReplaceText(movePoint, jsonString, (int)vsEPReplaceTextOptions.vsEPReplaceTextAutoformat);
+        }
+        #endregion
     }
 }
