@@ -7,7 +7,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Task = System.Threading.Tasks.Task;
 
-// Reference: https://docs.microsoft.com/en-us/visualstudio/extensibility/adding-a-menu-controller-to-a-toolbar?view=vs-2019
 namespace JsonFormatter
 {
     /// <summary>
@@ -60,11 +59,7 @@ namespace JsonFormatter
         /// <summary>
         /// Gets the instance of the command.
         /// </summary>
-        public static JsonFormatterCommand Instance
-        {
-            get;
-            private set;
-        }
+        public static JsonFormatterCommand Instance { get; private set; }
 
         /// <summary>
         /// Gets the service provider from the owner package.
