@@ -18,24 +18,22 @@ namespace JsonFormatter
         public const string guidJsonFormatterPackageCmdSetString = "25e9462e-b849-4317-bcfd-8cdea538f8b3";
         public static Guid guidJsonFormatterPackageCmdSet = new Guid(guidJsonFormatterPackageCmdSetString);
 
-        public const string guidImagesString = "376e1888-36e4-4298-82ca-c9ee0015e00b";
-        public static Guid guidImages = new Guid(guidImagesString);
+        public const string guidMinifyString = "399a2d9d-b0e5-4737-b441-a80be8acb1e3";
+        public static Guid guidMinify = new Guid(guidMinifyString);
+
+        public const string guidPrettyString = "3b6d80d0-9493-4ff6-a7ec-c7c1150f2b9e";
+        public static Guid guidPretty = new Guid(guidPrettyString);
     }
     /// <summary>
     /// Helper class that encapsulates all CommandIDs uses across VS Package.
     /// </summary>
     internal sealed partial class PackageIds
     {
-        public const int MyMenuGroup = 0x1020;
         public const int MinifyJsonCommand = 0x0100;
         public const int PrettyJsonCommand = 0x0200;
         public const int Toolbar = 0x1000;
         public const int ToolbarGroup = 0x1050;
-        public const int bmpPic1 = 0x0001;
-        public const int bmpPic2 = 0x0002;
-        public const int bmpPicSearch = 0x0003;
-        public const int bmpPicX = 0x0004;
-        public const int bmpPicArrows = 0x0005;
-        public const int bmpPicStrikethrough = 0x0006;
+        public const int bmpMinify = 0x0001;
+        public const int bmpPretty = 0x0001;
     }
 }
