@@ -84,6 +84,10 @@
     </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LICENSE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\bitmap-m.bmp" />
     <Content Include="Resources\bitmap-p.bmp" />
   </ItemGroup>
