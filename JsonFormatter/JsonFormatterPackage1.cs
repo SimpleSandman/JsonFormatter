@@ -18,6 +18,9 @@ namespace JsonFormatter
         public const string guidJsonFormatterPackageCmdSetString = "25e9462e-b849-4317-bcfd-8cdea538f8b3";
         public static Guid guidJsonFormatterPackageCmdSet = new Guid(guidJsonFormatterPackageCmdSetString);
 
+        public const string UIContextGuidString = "58b7af2f-ec18-40d4-b23a-f41af344c153";
+        public static Guid UIContextGuid = new Guid(UIContextGuidString);
+
         public const string guidMinifyString = "399a2d9d-b0e5-4737-b441-a80be8acb1e3";
         public static Guid guidMinify = new Guid(guidMinifyString);
 

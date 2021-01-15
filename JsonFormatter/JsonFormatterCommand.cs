@@ -1,12 +1,13 @@
 ﻿using System;
 using System.ComponentModel.Design;
-using Task = System.Threading.Tasks.Task;
 
 using EnvDTE;
 
 using Microsoft.VisualStudio.Shell;
 
 using Newtonsoft.Json;
+
+using Task = System.Threading.Tasks.Task;
 
 namespace JsonFormatter
 {
@@ -48,12 +49,18 @@ namespace JsonFormatter
 
             // Add minify item to the command set
             CommandID menuCommandID = new CommandID(CommandSet, cmdidMinifyId);
-            MenuCommand menuItem = new MenuCommand(this.MinifyExecute, menuCommandID);
+            OleMenuCommand menuItem = new OleMenuCommand(this.MinifyExecute, menuCommandID)
+            {
+                Supported = false
+            };
             commandService.AddCommand(menuItem);
 
             // Add pretty item to the command set
             menuCommandID = new CommandID(CommandSet, cmdidPrettyId);
-            menuItem = new MenuCommand(this.PrettyExecute, menuCommandID);
+            menuItem = new OleMenuCommand(this.PrettyExecute, menuCommandID)
+            {
+                Supported = false
+            };
             commandService.AddCommand(menuItem);
         }
 

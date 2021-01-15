@@ -1,7 +1,9 @@
 ﻿using Microsoft.VisualStudio.Shell;
+
 using System;
 using System.Runtime.InteropServices;
 using System.Threading;
+
 using Task = System.Threading.Tasks.Task;
 
 namespace JsonFormatter
@@ -26,15 +28,25 @@ namespace JsonFormatter
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(JsonFormatterPackage.PackageGuidString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideAutoLoad(JsonFormatterPackage.UIContextGuid, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideUIContextRule(JsonFormatterPackage.UIContextGuid,
+        name: "Supported Files",
+        expression: "Json",
+        termNames: new[] { "Json" },
+        termValues: new[] { "ActiveEditorContentType:Json" })]
     public sealed class JsonFormatterPackage : AsyncPackage
     {
         /// <summary>
-        /// JsonFormatterPackage GUID string.
+        /// <see cref="JsonFormatterPackage"/> GUID string.
         /// </summary>
         public const string PackageGuidString = "6910058c-448f-4103-9423-50276145f338";
 
-        #region Package Members
+        /// <summary>
+        /// UI context GUID string for <see cref="JsonFormatterPackage"/>
+        /// </summary>
+        public const string UIContextGuid = "58b7af2f-ec18-40d4-b23a-f41af344c153";
 
+        #region Package Members
         /// <summary>
         /// Initialization of the package; this method is called right after the package is sited, so this is the place
         /// where you can put all the initialization code that rely on services provided by VisualStudio.
@@ -49,7 +61,6 @@ namespace JsonFormatter
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             await JsonFormatterCommand.InitializeAsync(this);
         }
-
         #endregion
     }
 }

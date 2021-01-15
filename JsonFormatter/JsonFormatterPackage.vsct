@@ -28,7 +28,6 @@
         <CommandFlag>DefaultDocked</CommandFlag>
         <Strings>
           <ButtonText>Json Formatter</ButtonText>
-          <CommandName>Json Formatter</CommandName>
         </Strings>
       </Menu>
     </Menus>
@@ -64,17 +63,17 @@
       <Button guid="guidJsonFormatterPackageCmdSet" id="MinifyJsonCommand" priority="0x0000" type="Button">
         <Parent guid="guidJsonFormatterPackageCmdSet" id="ToolbarGroup" />
         <Icon guid="guidMinify" id="bmpMinify" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>Minify JSON</ButtonText>
-          <CommandName>Minify JSON</CommandName>
         </Strings>
       </Button>
       <Button guid="guidJsonFormatterPackageCmdSet" id="PrettyJsonCommand" priority="0x0100" type="Button">
         <Parent guid="guidJsonFormatterPackageCmdSet" id="ToolbarGroup" />
         <Icon guid="guidPretty" id="bmpPretty" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
           <ButtonText>Pretty JSON</ButtonText>
-          <CommandName>Pretty JSON</CommandName>
         </Strings>
       </Button>
     </Buttons>
@@ -85,6 +84,11 @@
       <Bitmap guid="guidPretty" href="Resources\bitmap-p.bmp" usedList="bmpPretty"/>
     </Bitmaps>
   </Commands>
+
+  <VisibilityConstraints>
+    <VisibilityItem guid="guidJsonFormatterPackageCmdSet" id="MinifyJsonCommand" context="UIContextGuid" />
+    <VisibilityItem guid="guidJsonFormatterPackageCmdSet" id="PrettyJsonCommand" context="UIContextGuid" />
+  </VisibilityConstraints>
 
   <Symbols>
     <!-- This is the package guid. -->
@@ -97,6 +101,8 @@
       <IDSymbol name="Toolbar" value="0x1000" />
       <IDSymbol name="ToolbarGroup" value="0x1050" />
     </GuidSymbol>
+
+    <GuidSymbol name="UIContextGuid" value="{58b7af2f-ec18-40d4-b23a-f41af344c153}"/>
 
     <GuidSymbol name="guidMinify" value="{399a2d9d-b0e5-4737-b441-a80be8acb1e3}">
       <IDSymbol name="bmpMinify" value="1" />
