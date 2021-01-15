@@ -8,3 +8,10 @@ I'm no graphic designer, so I apologize if the images look really basic. Which i
 ## Two Simple Features
 - Minify
 - Prettify
+
+## Visual Studio Marketplace Link
+Click on the image below to go to the marketplace page!
+
+<a href="https://marketplace.visualstudio.com/items?itemName=KentonStandard.JsonFormatter">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Visual_Studio_Icon_2019.svg" width="30%" height="30%" />
+</a>
