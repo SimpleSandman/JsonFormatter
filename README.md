@@ -9,6 +9,16 @@ I'm no graphic designer, so I apologize if the images look really basic. Which i
 - Minify
 - Prettify
 
+## How-To's
+
+- Add the extension to your toolbar
+
+<img src="https://media0.giphy.com/media/6PM9EyQ3yPcZyiaf4n/giphy.gif" />
+
+- Minify/Prettify JSON data
+
+<img src="https://media4.giphy.com/media/uysUJgP8PJL6gxsN3R/giphy.gif" />
+
 ## Visual Studio Marketplace Link
 Click on the image below to go to the marketplace page!
 
