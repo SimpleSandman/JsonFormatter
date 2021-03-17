@@ -73,7 +73,7 @@
         <Icon guid="guidPretty" id="bmpPretty" />
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Strings>
-          <ButtonText>Pretty JSON</ButtonText>
+          <ButtonText>Prettify JSON</ButtonText>
         </Strings>
       </Button>
     </Buttons>
