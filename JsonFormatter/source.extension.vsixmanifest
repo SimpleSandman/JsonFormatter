@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="3ec2976c-dff7-4c1c-b763-4122993c6de5" Version="1.0" Language="en-US" Publisher="Kenton Standard" />
+        <Identity Id="3ec2976c-dff7-4c1c-b763-4122993c6de5" Version="1.1" Language="en-US" Publisher="Kenton Standard" />
         <DisplayName>Json Formatter</DisplayName>
         <Description xml:space="preserve">Easy way to minify or prettify JSON.</Description>
         <License>LICENSE.txt</License>
