@@ -2,6 +2,7 @@
 using System.ComponentModel.Design;
 
 using EnvDTE;
+using EnvDTE80;
 
 using Microsoft.VisualStudio.Shell;
 
@@ -105,12 +106,7 @@ namespace JsonFormatter
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            DTE dte = Package.GetGlobalService(typeof(DTE)) as DTE;
-            Document doc = dte.ActiveDocument;
-            if (doc == null)
-            {
-                return;
-            }
+            Document doc = GetActiveDocument();
 
             string jsonString = FormatJsonString(doc);
             OverwriteAllJsonTextToDocument(doc, jsonString);
@@ -126,19 +122,26 @@ namespace JsonFormatter
         private void PrettyExecute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            
-            DTE dte = Package.GetGlobalService(typeof(DTE)) as DTE;
-            Document doc = dte.ActiveDocument;
-            if (doc == null)
-            {
-                return;
-            }
+
+            Document doc = GetActiveDocument();
 
             string jsonString = FormatJsonString(doc, Formatting.Indented);
             OverwriteAllJsonTextToDocument(doc, jsonString);
         }
 
         #region Helper Methods
+        private Document GetActiveDocument()
+        {
+            DTE2 dte = Package.GetGlobalService(typeof(Microsoft.VisualStudio.Shell.Interop.SDTE)) as DTE2;
+            Document doc = dte.ActiveDocument;
+            if (doc == null)
+            {
+                return null;
+            }
+
+            return doc;
+        }
+
         private string FormatJsonString(Document doc, Formatting formatting = Formatting.None)
         {
             string jsonText = ReadAllJsonTextFromDocument(doc);
